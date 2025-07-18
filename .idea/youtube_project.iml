@@ -5,8 +5,10 @@
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/manish-venv" />
       <excludeFolder url="file://$MODULE_DIR$/manish-venv1" />
+      <excludeFolder url="file://$MODULE_DIR$/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/Praveen.venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.10 (youtube_project)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8 (Data_Eng_E-Commerce_S3) (2)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

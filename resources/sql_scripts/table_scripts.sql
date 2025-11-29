@@ -137,7 +137,7 @@ INSERT INTO s3_bucket_info (bucket_name, status, created_date, updated_date)
 VALUES ('youtube-project-testing', 'active', NOW(), NOW());
 
 
---Data Mart customer
+-- Data Mart customer
 CREATE TABLE customers_data_mart (
     customer_id INT ,
     full_name VARCHAR(100),
@@ -148,7 +148,7 @@ CREATE TABLE customers_data_mart (
 );
 
 
---sales mart table
+-- sales mart table
 CREATE TABLE sales_team_data_mart (
     store_id INT,
     sales_person_id INT,

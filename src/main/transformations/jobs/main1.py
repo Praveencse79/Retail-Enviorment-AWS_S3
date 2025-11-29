@@ -5,14 +5,22 @@ import s3_client
 from pyspark.sql.types import StructType, StructField, IntegerType, StringType, FloatType, DateType
 
 from resources.dev import config
+from src.main.delete.local_file_delete import delete_local_file
 from src.main.download.aws_file_download import S3FileDownloader
 from src.main.move.move_files import move_s3_to_s3
+from src.main.read.database_read import DatabaseReader
+from src.main.transformations.jobs.customer_mart_sql_tranform_write import customer_mart_calculation_table_write
+from src.main.transformations.jobs.dimension_tables_join import dimesions_table_join
+from src.main.transformations.jobs.sales_mart_sql_transform_write import sales_mart_calculation_table_write
+from src.main.upload.upload_to_s3 import UploadToS3
 from src.main.utility.encrypt_decrypt import *
 from src.main.utility.s3_client_object import *
 from src.main.utility.logging_config import *
 from src.main.utility.my_sql_session import *
 from src.main.read.aws_read import *
 from src.main.utility.spark_session import spark_session
+from src.main.write.parquet_writer import ParquetWriter
+
 
 ########## Get S3 client ####################
 aws_access_key = config.aws_access_key
@@ -144,7 +152,7 @@ logger.info(f"**** List of correct files ******{correct_files}")
 logger.info(f"**** List of error files ******{error_files}")
 logger.info("**** Moving Error data to error directory if any *******")
 
-Move the data to error directory on local
+# Move the data to error directory on local
 error_folder_local_path = config.error_folder_path_local
 if error_files:
     for file_path in error_files:
@@ -163,10 +171,10 @@ if error_files:
 else:
     logger.info("*** There is no error files available at our dataset***")
 
-Additional columns needs to be taken care of
-Determine extra columns
-Before running the process
-stage table needs to be updated with status as as Active (A) or inactive(1)
+# Additional columns needs to be taken care of
+# Determine extra columns
+# Before running the process
+# stage table needs to be updated with status as as Active (A) or inactive(1)
 
 logger.info(f"**** Updating the product_staging table that we have started the process **")
 insert_statements = []
@@ -340,6 +348,47 @@ logger. info("*************** Calculation of customer mart done and written into
 #Rest sales person will get nothing
 #write the data into MySQL table |
 logger. info ("***************** Calculating sales every month billed amount *******************")
-#sales_mart_calculation_table_write(final_sales_team_data_mart_df)
-logger. info ("**************  Calculation of sales mart done and written int Fre ********************")
+sales_mart_calculation_table_write(final_sales_team_data_mart_df)
+logger. info ("**************  Calculation of sales mart done and written into the table ********************")
+
+########## Last Step ##################
+#Move the file on s3 into Urocessed folder and delete the local files
+source_prefix = config.s3_source_directory
+destination_prefix = config.s3_processed_directory
+message = move_s3_to_s3(s3_client,config.bucket_name, source_prefix, destination_prefix)
+logger.info(f"{message}")
+
+logger.info("*** Deleting sales data from local ****")
+delete_local_file(config.local_directory)
+logger.info("*** Deleted customer_data_mart_local_file ****")
+delete_local_file(config.customer_data_mart_local_file)
+delete_local_file(config.sales_team_data_mart_local_file)
+delete_local_file(config.sales_team_data_mart_partitioned_local_file)
+
+#update the status of stoging table
+update_statements = []
+if correct_files:
+   for file in correct_files:
+       filename= os.path.basename(file)
+       statements= f"UPDATE {db_name}.{config.product_staging_table} " \
+                   f" SET status 'I', updated dates = '{formatted_date}' " \
+                   f"WHERE file name '{filename}' "
+       
+       update_statements.append(statements)
+    logger.info(f" Updated statement created for staging table --- {update_statements}")
+    logger.info("*******Connecting with My SQL server*******")
+    connection =get_mysql_connection()
+    Cursor = connection.cursor()
+    logger.info("******* My SQL server connected successfully*********")
+    for statement in update_statements:
+        cursor.execute(statement)
+        connection.commit()
+    cursor.close()
+    connection.close()
+else:
+    logger.error("**** There is some error in process in between *******")
+    sys.exit()
+
+input("Press enter to terminate")    
+
 

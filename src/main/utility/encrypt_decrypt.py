@@ -38,7 +38,7 @@ def decrypt(enc):
     cipher = AES.new(get_private_key(), AES.MODE_CBC, iv.encode('utf-8'))
     return unpad(cipher.decrypt(base64.b64decode(enc))).decode('utf-8')
 
-print(decrypt("CBbSUPfgl+CcJPNG5lpHuBLLaX9Zu8Lczsx3VDio8ss="))
-print(encrypt("AKIA55MHVQWVQ7CXVXGU"))
-print(encrypt("Ub0uoWFFUXuoTttBsfjk0JtXmdX6RVpWXZgGF2Y6"))
-print(decrypt("51kJmEher4whvA2RTU0ab/bOz0BU8g8bs96aDVDTIjO/N9dp8vNvEIqXMXZpaheu"))
+# print(decrypt("CBbSUPfgl+CcJPNG5lpHuBLLaX9Zu8Lczsx3VDio8ss="))
+# print(encrypt("AKIA55MHVQWVQ7CXVXGU"))
+# print(encrypt("Ub0uoWFFUXuoTttBsfjk0JtXmdX6RVpWXZgGF2Y6"))
+# print(decrypt("51kJmEher4whvA2RTU0ab/bOz0BU8g8bs96aDVDTIjO/N9dp8vNvEIqXMXZpaheu"))

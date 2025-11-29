@@ -365,7 +365,7 @@ delete_local_file(config.customer_data_mart_local_file)
 delete_local_file(config.sales_team_data_mart_local_file)
 delete_local_file(config.sales_team_data_mart_partitioned_local_file)
 
-#update the status of stoging table
+#update the status of staging table
 update_statements = []
 if correct_files:
    for file in correct_files:

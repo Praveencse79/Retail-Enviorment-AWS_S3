@@ -4,7 +4,7 @@ The code has been meticulously crafted with careful consideration for various as
 
 Let's Start with requirement to complete the projects:-
 1. You should have laptop with minimum 4 GB of RAM, i3 and above (Better to have 8GB with i5).
-2. Local setup of spark. This is tricky so keep all things intact to work it properly.Download python 3.10.11 instead of python3.6 or python3.9 Use this link for clean setup :- https://youtu.be/4p7gX4DBLyc
+2. Local setup of spark. This is tricky so keep all things intact to work it properly.Download python 3.10.11 instead of python3.6 or python3.9 
 3. PyCharm installed in the system. How to install
 4. MySQL workbench should also be installed to the system. How to install
 5. GitHub account is good to have but not necessary.

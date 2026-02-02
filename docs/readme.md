@@ -1,3 +1,59 @@
+Problem: Slow processing of large POS data (70GB/day)
+
+Client issue:
+The client was struggling to process large daily point-of-sale data, which caused delays in reports and decision-making.
+
+My solution:
+I built scalable Spark pipelines using Apache Spark on distributed clusters and applied caching and broadcast joins to optimize performance.
+
+Impact:
+Data processing time was significantly reduced, and daily reports were available on time.
+
+2. Problem: No proper data model for sales analysis
+
+Client issue:
+Raw POS data had no structure, making it difficult to analyze sales by store, product, or salesperson.
+
+My solution:
+I designed fact and dimension tables (store, product, customer, time) using SQL and Spark to create a structured data model.
+
+Impact:
+Business teams could easily analyze sales trends and performance at different levels.
+
+3. Problem: Low sales team motivation due to lack of performance tracking
+
+Client issue:
+Sales staff were not motivated because performance was not tracked or rewarded clearly.
+
+My solution:
+I helped design an incentive program by calculating top performers using sales data and ranking logic in Spark and SQL.
+
+Impact:
+Salesperson motivation increased, leading to better sales performance across stores.
+
+4. Problem: Manual and unreliable data pipelines
+
+Client issue:
+Data pipelines were manually triggered, which caused failures and inconsistency in data availability.
+
+My solution:
+I automated workflows using Airflow DAGs and CRON jobs, and integrated deployments using Azure CI/CD pipelines.
+
+Impact:
+Pipelines became reliable, repeatable, and required minimal manual intervention.
+
+5. Problem: Customer churn due to infrequent buyers
+
+Client issue:
+The client was losing customers who stopped purchasing frequently.
+
+My solution:
+I built logic to identify infrequent buyers using historical purchase data and enabled a coupon-based incentive system.
+
+Impact:
+Customer retention improved, and repeat purchases increased, boosting overall revenue.
+
+
 Welcome to the show. This endeavor aims to provide you with insights into the functioning of projects within a real-time environment.
 
 The code has been meticulously crafted with careful consideration for various aspects. It not only nurtures your coding skills but also imparts a comprehensive comprehension of project structures.

@@ -3,7 +3,7 @@ from pyspark.sql.window import Window
 from resources.dev import config
 from src.main.write.database_write import DatabaseWriter
 
-#calculation for customer mart
+#calculation for customer mart 
 #find out the customer total purchase every month
 #write the data into MySQL table
 def customer_mart_calculation_table_write(final_customer_data_mart_df):

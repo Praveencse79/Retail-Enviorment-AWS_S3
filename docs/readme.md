@@ -53,7 +53,6 @@ I built logic to identify infrequent buyers using historical purchase data and e
 Impact:
 Customer retention improved, and repeat purchases increased, boosting overall revenue.
 
-
 Welcome to the show. This endeavor aims to provide you with insights into the functioning of projects within a real-time environment.
 
 The code has been meticulously crafted with careful consideration for various aspects. It not only nurtures your coding skills but also imparts a comprehensive comprehension of project structures.

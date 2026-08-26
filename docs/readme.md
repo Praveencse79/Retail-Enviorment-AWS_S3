@@ -1,4 +1,4 @@
-Problem: Slow processing of large POS data (70GB/day)
+Problem: Slow processing of large POS data (20GB/day)
 
 Client issue:
 The client was struggling to process large daily point-of-sale data, which caused delays in reports and decision-making.
